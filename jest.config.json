@@ -1,0 +1,30 @@
+{
+	"bail": true,
+	"clearMocks": true,
+	"collectCoverage": true,
+	"collectCoverageFrom": ["<rootDir>/src/modules/**/*.ts"],
+	"coverageDirectory": "coverage/jest",
+	"coveragePathIgnorePatterns": [
+		"<rootDir>/node_modules/",
+		"<rootDir>/src/modules/LocalStorage.ts",
+		"<rootDir>/src/modules/TokenStorage.ts",
+		"<rootDir>/src/modules/HtmlUtil.ts",
+		"<rootDir>/src/modules/Entities/Entity.ts"
+	],
+	"coverageReporters": ["lcov", "text-summary"],
+	"coverageThreshold": {
+		"global": {
+			"branches": 100,
+			"functions": 100,
+			"lines": 100,
+			"statements": 100
+		}
+	},
+	"moduleDirectories": ["node_modules", "src"],
+	"testEnvironment": "jsdom",
+	"testMatch": ["<rootDir>/tests/**/*.ts"],
+	"watchPlugins": [
+		"jest-watch-typeahead/filename",
+		"jest-watch-typeahead/testname"
+	]
+}
