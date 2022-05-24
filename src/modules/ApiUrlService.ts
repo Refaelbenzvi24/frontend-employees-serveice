@@ -1,11 +1,10 @@
-
 export interface ApiUrlServiceProps {
 	apiRootUrl: string;
 	apiCurrentVersion?: string;
 	apiFullUrlRootUrl?: string;
 }
 
-export type QueryDataProps = Record<string, string | number | boolean>
+export type QueryDataProps = Record<string, string | number | boolean>;
 
 export default class ApiUrlService {
 	apiRootUrl: string
@@ -22,8 +21,8 @@ export default class ApiUrlService {
 
 	/**
 	 * build url params by object, can also join to an existing url params string
-	 * @param params
-	 * @param encodedUrlParameters
+	 * @param params {object} object of url params
+	 * @param encodedUrlParameters {string} existing url params string
 	 */
 	buildUrlParams(params: QueryDataProps, encodedUrlParameters?: string) {
 		if (Object.keys(params).length > 0) {

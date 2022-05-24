@@ -15,11 +15,10 @@ const providers = [
 
 export const AppContextProvider = CombineComponents(...providers as FC[])
 
-export default (props: ProvidersProps) => {
+export default ({ children }: ProvidersProps) => {
 	return (
 		<AppContextProvider>
-			{props.children}
+			{children}
 		</AppContextProvider>
 	)
 }
-

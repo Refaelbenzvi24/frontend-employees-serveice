@@ -1,7 +1,5 @@
 import { Suspense } from 'react'
-import {
-	BrowserRouter as Router,
-} from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
 // @ts-expect-error react types not compatible yet.
 import { createRoot } from 'react-dom/client'
 

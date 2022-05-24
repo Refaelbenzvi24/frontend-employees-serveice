@@ -8,3 +8,4 @@ export interface LoginResult {
 	managerId: number | null
 	role: string
 }
+

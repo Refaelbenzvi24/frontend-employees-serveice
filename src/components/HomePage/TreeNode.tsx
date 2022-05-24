@@ -1,43 +1,25 @@
-import { OrgTreeEmployee } from "../../modules/Entities/Employee"
+import { EmployeeProps } from "../../modules/Entities/Employee"
 import { Col, Row } from "../UI/Grid"
 import Title from "../UI/Typograpy/Title"
 import Card from "../UI/Cards/Card"
 import EmployeeDetails from "./EmployeeDetails"
 import TokenStorage from "../../modules/TokenStorage"
 import ClickTooltip from "../UI/Tooltip/ClickTooltip"
-import { useEffect } from "react"
-import { connect } from "../../modules/HtmlUtil"
 import clsx from "clsx"
+import { TreeNode as TreeNodeType } from "../../modules/Tree"
+import DrawLine from "../UI/Line/DrawLine"
+import ConditionalRender from "../UI/General/ConditionalRender"
 
 
 interface TreeNodeProps {
-	employees: OrgTreeEmployee[]
+	employees: (EmployeeProps & TreeNodeType)[]
 	managerName: string
 }
 
 const isConnectedEmployee = (email: string) => email === TokenStorage.getEmployeeEmail()
 
-const TreeNode = (treeNodeParams: TreeNodeProps) => {
-	const { employees, managerName } = treeNodeParams
-
-	/**
-	 * Draws lines from the current level tree nodes to theirs manager node.
-	 */
-	const drawCurrentTreeLevelLines = () => {
-		employees.forEach((employee) => {
-			if (employee.managerId !== null) {
-				const div1     = document.querySelector(`#employee-${employee.managerId}`) as HTMLDivElement
-				const div2     = document.querySelector(`#employee-${employee.id}`) as HTMLDivElement
-				const appendTo = document.querySelector('#tree-lines-container') as HTMLDivElement
-
-				connect(div1, div2, '#4d4d4d', 2, appendTo)
-			}
-		})
-	}
-
-	useEffect(() => {
-		drawCurrentTreeLevelLines()
-	}, [])
+const TreeNode = (TreeNodeParams: TreeNodeProps) => {
+	const { employees, managerName } = TreeNodeParams
 
 	return (
 		<Row className="px-2" id="tree-node-container">
@@ -54,22 +36,26 @@ const TreeNode = (treeNodeParams: TreeNodeProps) => {
 											<Title className="px-2 py-1 text-sm">{`${employee.firstName} ${employee.lastName}`}</Title>
 										</Card>
 									</ClickTooltip>
+
+									<ConditionalRender condition={!!employee.parentId}>
+										<DrawLine from={`#employee-${employee.parentId}`}
+										          to={`#employee-${employee.id}`}
+										          thickness={2}
+										          color="#4d4d4d"/>
+									</ConditionalRender>
 								</Col>
 							</Row>
 
 							<Row>
-								{
-									employee.employees.length > 0 && (
-										<TreeNode managerName={`${employee.firstName} ${employee.lastName}`}
-										          employees={employee.employees}/>
-									)
-								}
+								<ConditionalRender condition={employee.children.length > 0}>
+									<TreeNode managerName={`${employee.firstName} ${employee.lastName}`}
+									          employees={employee.children as (EmployeeProps & TreeNodeType)[]}/>
+								</ConditionalRender>
 							</Row>
 						</Col>
 					)
 				})
 			}
-			<div id="tree-lines-container"/>
 		</Row>
 	)
 }

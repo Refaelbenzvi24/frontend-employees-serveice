@@ -1,6 +1,4 @@
 import { Employee } from "../../../../src/modules/Entities/Employee"
-import data from "../../../data/Employees.json"
-import expectedTreeData from "../../../data/EmployeesExpectedTree.json"
 
 
 describe('Employee', () => {
@@ -24,12 +22,6 @@ describe('Employee', () => {
 	it('should have Entity class functions', () => {
 		expect(stub.transform).toBeDefined()
 		expect(stub.transformExclude).toBeDefined()
-	})
-
-	describe('buildOrgTree', () => {
-		it('should return correct organization tree for given employees array', () => {
-			expect(Employee.buildOrgTree(data)).toEqual(expectedTreeData)
-		})
 	})
 
 	describe('transform', () => {

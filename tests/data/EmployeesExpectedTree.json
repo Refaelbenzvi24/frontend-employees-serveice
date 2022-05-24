@@ -7,8 +7,9 @@
 		"password": "123456",
 		"startDate": "01/05/2020",
 		"managerId": null,
+		"parentId": null,
 		"role": "CEO",
-		"employees": [
+		"children": [
 			{
 				"id": 2,
 				"firstName": "John",
@@ -17,8 +18,9 @@
 				"password": "112233",
 				"startDate": "01/09/2020",
 				"managerId": 1,
+				"parentId": 1,
 				"role": "QA Manager",
-				"employees": [
+				"children": [
 					{
 						"id": 3,
 						"firstName": "Bob",
@@ -27,8 +29,9 @@
 						"password": "223344",
 						"startDate": "05/05/2022",
 						"managerId": 2,
+						"parentId": 2,
 						"role": "RnD Manager",
-						"employees": []
+						"children": []
 					},
 					{
 						"id": 5,
@@ -38,8 +41,9 @@
 						"password": "123456",
 						"startDate": "07/03/2019",
 						"managerId": 2,
+						"parentId": 2,
 						"role": "SW Engineer",
-						"employees": []
+						"children": []
 					},
 					{
 						"id": 6,
@@ -49,8 +53,9 @@
 						"password": "334455",
 						"startDate": "22/08/2019",
 						"managerId": 2,
+						"parentId": 2,
 						"role": "SW Engineer",
-						"employees": []
+						"children": []
 					}
 				]
 			},
@@ -62,8 +67,9 @@
 				"password": "123456",
 				"startDate": "01/01/2021",
 				"managerId": 1,
+				"parentId": 1,
 				"role": "QA Engineer",
-				"employees": []
+				"children": []
 			},
 			{
 				"id": 7,
@@ -73,8 +79,9 @@
 				"password": "334455",
 				"startDate": "5/06/2019",
 				"managerId": 1,
+				"parentId": 1,
 				"role": "Sales",
-				"employees": []
+				"children": []
 			}
 		]
 	}

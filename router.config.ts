@@ -1,17 +1,14 @@
-export const onRouteGenerate = (routes: any[]) => {
+import { RouteObject } from "react-router"
+
+
+export const onRouteGenerate = (routes: RouteObject[]) => {
 
 	return routes
 }
 
 
-export const extendRoute = (route: any, parent: any) => {
-	// Remove this it'll all goes to catch all page
-	if (route.routes && route.routes.length > 0) {
-		delete route.exact
-	}
-
+export const extendRoute = (route: RouteObject) => {
 	if (route.index === true) {
-		// Index is unauthenticated.
 		delete route.index
 		route.path = '/'
 		return route

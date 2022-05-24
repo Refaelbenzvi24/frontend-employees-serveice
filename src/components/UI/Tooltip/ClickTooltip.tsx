@@ -16,12 +16,16 @@ export default (props: ClickTooltipProps) => {
 	const [tooltipIsActive, setTooltipIsActive] = useState(false)
 	const tooltipRef                            = useRef<Node>() as MutableRefObject<HTMLDivElement>
 
+	const handleOutsideOfTooltipClick = (e: MouseEvent) => {
+		if (!tooltipRef.current.contains(e.target as Node)) {
+			setTooltipIsActive(false)
+		}
+	}
+
 	useEffect(() => {
-		document.addEventListener('click', (e: MouseEvent) => {
-			if (!tooltipRef.current.contains(e.target as Node)) {
-				setTooltipIsActive(false)
-			}
-		})
+		document.addEventListener('click', handleOutsideOfTooltipClick)
+
+		return () => document.removeEventListener('click', handleOutsideOfTooltipClick)
 	}, [])
 
 	return (
@@ -30,7 +34,7 @@ export default (props: ClickTooltipProps) => {
 				<ConditionalAnimation condition={tooltipIsActive} timeout={200}>
 					<span className={`${clsx(!tooltipIsActive && '!opacity-0 ease-in-out', 'transition-all duration-200 fade-in')}
 										absolute rounded shadow-xl text-semibold p-1 bg-gray-100 dark:bg-dark-200 text-blue-500
-										dark:text-white z-9999 ${clsx(props.className)}`}>
+										dark:text-white z-999 ${clsx(props.className)}`}>
 						{props.tooltip}
 					</span>
 				</ConditionalAnimation>

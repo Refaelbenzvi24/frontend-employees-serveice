@@ -1,10 +1,10 @@
-import { OrgTreeEmployee } from "../../modules/Entities/Employee"
 import { Col, Row } from "../UI/Grid"
 import Subtitle from "../UI/Typograpy/Subtitle"
+import { EmployeeProps } from "../../modules/Entities/Employee"
 
 
 interface EmployeeDetailsProps {
-	employee: OrgTreeEmployee
+	employee: EmployeeProps
 	managerName: string
 }
 

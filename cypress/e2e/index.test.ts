@@ -1,10 +1,30 @@
 import "cypress-localstorage-commands"
+import EmployeesList from "../../tests/data/Employees.json"
 
 
 describe('Employees', () => {
 	beforeEach(() => {
 		cy.viewport('macbook-16')
 		cy.setLocalStorage('theme', 'dark')
+
+		cy.intercept({
+			method: 'GET',
+			url:    '/v1/employee'
+		}, EmployeesList )
+
+		cy.intercept({
+			method: 'GET',
+			url:    '/v1/auth/login?email=david.cohen%40email.com&password=123456'
+		}, {
+			email:     "david.cohen@email.com",
+			firstName: "David",
+			id:        1,
+			lastName:  "Cohen",
+			managerId: null,
+			password:  "123456",
+			role:      "CEO",
+			startDate: "2020-01-05T00:00:00.000Z"
+		})
 	})
 
 	it('should have a title', () => {

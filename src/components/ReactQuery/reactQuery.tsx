@@ -14,7 +14,7 @@ const queryClient = new QueryClient({
 })
 
 interface ReactQueryProps {
-	children: ReactElement;
+	children: ReactElement
 }
 
 export default (props: ReactQueryProps) => {

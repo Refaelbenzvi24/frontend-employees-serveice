@@ -23,6 +23,6 @@ export default ({ children }: ThemeProviderOptions): ReactElement => {
 		rawSetTheme(theme)
 	}, [theme])
 
-	// eslint-disable-next-line react/jsx-no-constructed-context-values -- should be re-rendered every time that values are changed - affects children theme
+	// eslint-disable-next-line react/jsx-no-constructed-context-values -- should be re-rendered every time that value's changed - affects children theme
 	return <ThemeContext.Provider value={{ theme, setTheme }}>{children}</ThemeContext.Provider>
 }

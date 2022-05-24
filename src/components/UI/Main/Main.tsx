@@ -23,6 +23,12 @@ export default (props: ReactElementProps) => {
 	const { shrinkPoint }         = sideBarOpts
 
 
+	const overlayToggle = () => {
+		if (overlays.length > 0) {
+			overlays[overlays.length - 1].onClick()
+		}
+	}
+
 	useEffect(() => {
 		if (overlays.length > 0) {
 			setOverlayState(true)
@@ -30,12 +36,6 @@ export default (props: ReactElementProps) => {
 			setOverlayState(false)
 		}
 	}, [overlays])
-
-	const overlayToggle = () => {
-		if (overlays.length > 0) {
-			overlays[overlays.length - 1].onClick()
-		}
-	}
 
 	useEffect(() => {
 		if (shrinkPoint && sideBar && windowWidth > shrinkPoint) {

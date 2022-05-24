@@ -8,6 +8,7 @@ import AutoImport from 'unplugin-auto-import/vite'
 import WindiCSS from 'vite-plugin-windicss'
 import TsconfigPaths from 'vite-tsconfig-paths'
 import {extendRoute, onRouteGenerate} from './router.config'
+import { RouteObject } from "react-router"
 
 
 export default defineConfig({
@@ -31,8 +32,8 @@ export default defineConfig({
 			onRoutesGenerated(routes) {
 				return onRouteGenerate(routes)
 			},
-			extendRoute(route: any, parent: any) {
-				return extendRoute(route, parent)
+			extendRoute(route: RouteObject) {
+				return extendRoute(route)
 			}
 		}),
 

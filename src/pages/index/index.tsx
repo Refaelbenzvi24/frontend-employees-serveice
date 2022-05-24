@@ -1,5 +1,5 @@
 import { Row, Col } from '../../components/UI/Grid'
-import HierarchyTree from "../../components/HomePage/HierarchyTree"
+import OrganizationTree from "../../components/HomePage/OrganizationTree"
 import { employeeEndpoint } from "../../services"
 import QueryHandler from "../../components/ReactQuery/QueryHandler"
 import { EmployeeProps } from "../../modules/Entities/Employee"
@@ -18,7 +18,7 @@ export default () => {
 
 				<Row className="pt-10 w-full justify-center">
 					<QueryHandler status={status}>
-						<HierarchyTree employees={data?.data as EmployeeProps[]}/>
+						<OrganizationTree employees={data?.data as EmployeeProps[]}/>
 					</QueryHandler>
 				</Row>
 			</Col>
